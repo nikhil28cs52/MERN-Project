@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1518791841217-8f162f1e1131?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwzNjUyOXwwfDF8c2VhcmNofDEwfHxiYWNrZ3JvdW5kfGVufDB8fHx8MTY3NTkwOTU1Mw&ixlib=rb-1.2.1&q=80&w=1080');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            transition: background-color 0.5s;
+        }
+        .header, .footer {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+        }
+        .container {
+            margin-top: 10%;
+        }
+        .dynamic-content {
+            margin: 20px 0;
+        }
+        .notice-board {
+            background: rgba(255, 255, 255, 0.9);
+            color: black;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            width: 80%;
+            max-width: 600px;
+        }
+        .button-box {
+            border: 2px solid white;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+        .footer p {
+            margin: 5px 0;
+        }
+    </style>
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <a class="navbar-brand" href="#">Our Application</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/login">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users/register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    
+    <div class="container">
+        <div class="notice-board">
+            <h2>Notice Board</h2>
+            <p>Keep an eye here for important updates and notifications.</p>
+        </div>
+
+        <div class="dynamic-content">
+            <h2 id="current-time"></h2>
+            <p id="greeting"></p>
+            <p>Experience our seamless login and registration process.</p>
+        </div>
+
+        <div class="button-box">
+            <a class="btn btn-primary" href="/users/login">Login</a>
+        </div>
+        <div class="button-box">
+            <a class="btn btn-secondary" href="/users/register">Register</a>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Our Application. All rights reserved.</p>
+        <p>1234 Main St, Lucknow, Uttar Pradesh, India</p>
+        <p>Email: info@ourapplication.com | Phone: +91-1234567890</p>
+    </div>
+    
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById('current-time').textContent = 'Current Time: ' + timeString;
+
+            const hours = now.getHours();
+            let greeting;
+            if (hours < 12) {
+                greeting = 'Good Morning!';
+            } else if (hours < 18) {
+                greeting = 'Good Afternoon!';
+            } else {
+                greeting = 'Good Evening!';
+            }
+            document.getElementById('greeting').textContent = greeting;
+        }
+        setInterval(updateTime, 1000);
+        updateTime(); // Initial call to set time and greeting immediately
+
+        window.addEventListener('scroll', function() {
+            const scrollY = window.scrollY;
+            const body = document.body;
+
+            if (scrollY < 300) {
+                body.style.backgroundColor = 'transparent';
+            } else if (scrollY < 600) {
+                body.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+            } else {
+                body.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
